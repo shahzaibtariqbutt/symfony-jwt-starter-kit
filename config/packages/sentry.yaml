@@ -1,0 +1,16 @@
+when@prod: &sentry_prod
+    sentry:
+#        dsn: 'https://969084209cd8cb5c01f2e5cdbb6ebd8a@o100790.ingest.us.sentry.io/4509763275849728'
+        options:
+            send_default_pii: true
+            error_types: "E_ALL & ~E_DEPRECATED"
+            ignore_exceptions:
+                # The manifestation of these errors we want to catch will be in the
+                # client apps.  Logging the server errors just leads to lots of
+                # false positive e.g. from bots pinging random URLs.
+                - 'ApiPlatform\Validator\Exception\ValidationException'
+                - 'Symfony\Component\HttpKernel\Exception\NotFoundHttpException'
+                - 'Symfony\Component\Security\Core\Exception\AccessDeniedException'
+
+# yaml anchor/alias
+when@staging: *sentry_prod

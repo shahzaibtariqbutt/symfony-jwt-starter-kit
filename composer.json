@@ -1,0 +1,160 @@
+{
+    "type": "project",
+    "license": "proprietary",
+    "minimum-stability": "stable",
+    "prefer-stable": true,
+    "require": {
+        "php": ">=8.4",
+        "ext-ctype": "*",
+        "ext-gd": "*",
+        "ext-iconv": "*",
+        "ext-intl": "*",
+        "api-platform/doctrine-orm": "^4.1",
+        "api-platform/symfony": "^4.1",
+        "doctrine/doctrine-bundle": "^2.15",
+        "doctrine/doctrine-fixtures-bundle": "^4.1",
+        "doctrine/doctrine-migrations-bundle": "^3.4",
+        "doctrine/orm": "^3.5",
+        "league/flysystem-aws-s3-v3": "^3.29",
+        "league/flysystem-bundle": "^3.5",
+        "liip/imagine-bundle": "^2.13",
+        "m10c/native-push-notifier-bundle": "^0.1.2",
+        "nelmio/cors-bundle": "^2.5",
+        "nesbot/carbon": "^3.10",
+        "phpdocumentor/reflection-docblock": "^5.6",
+        "scienta/doctrine-json-functions": "^6.3",
+        "sentry/sentry-symfony": "^5.3",
+        "symfony/asset": "7.3.*",
+        "symfony/console": "7.3.*",
+        "symfony/doctrine-messenger": "7.3.*",
+        "symfony/dotenv": "7.3.*",
+        "symfony/expression-language": "7.3.*",
+        "symfony/flex": "^2.8",
+        "symfony/framework-bundle": "7.3.*",
+        "symfony/http-client": "7.3.*",
+        "symfony/intl": "7.3.*",
+        "symfony/mailer": "7.3.*",
+        "symfony/messenger": "7.3.*",
+        "symfony/monolog-bundle": "^3.10",
+        "symfony/notifier": "7.3.*",
+        "symfony/postmark-mailer": "7.3.*",
+        "symfony/property-access": "7.3.*",
+        "symfony/property-info": "7.3.*",
+        "symfony/runtime": "7.3.*",
+        "symfony/security-bundle": "7.3.*",
+        "symfony/serializer": "7.3.*",
+        "symfony/twig-bundle": "7.3.*",
+        "symfony/uid": "7.3.*",
+        "symfony/validator": "7.3.*",
+        "symfony/yaml": "7.3.*",
+        "twig/cssinliner-extra": "^3.21",
+        "twig/extra-bundle": "^3.21",
+        "twig/inky-extra": "^3.21",
+        "vich/uploader-bundle": "^2.7",
+        "webmozart/assert": "^1.11",
+        "lexik/jwt-authentication-bundle": "^3.1"
+    },
+    "require-dev": {
+        "friendsofphp/php-cs-fixer": "^3.85",
+        "phpstan/extension-installer": "^1.4",
+        "phpstan/phpstan": "^2.1",
+        "phpstan/phpstan-doctrine": "^2.0",
+        "phpstan/phpstan-symfony": "^2.0",
+        "phpstan/phpstan-webmozart-assert": "^2.0",
+        "phpunit/phpunit": "^12.2",
+        "symfony/browser-kit": "7.3.*",
+        "symfony/css-selector": "7.3.*",
+        "symfony/debug-bundle": "7.3.*",
+        "symfony/phpunit-bridge": "7.3.*",
+        "symfony/stopwatch": "7.3.*",
+        "symfony/web-profiler-bundle": "7.3.*",
+        "zenstruck/messenger-test": "^1.11"
+    },
+    "config": {
+        "allow-plugins": {
+            "php-http/discovery": true,
+            "phpstan/extension-installer": true,
+            "symfony/flex": true,
+            "symfony/runtime": true
+        },
+        "bump-after-update": true,
+        "sort-packages": true,
+        "optimize-autoloader": true,
+        "preferred-install": {
+            "*": "dist"
+        }
+    },
+    "autoload": {
+        "psr-4": {
+            "App\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "App\\Tests\\": "tests/"
+        }
+    },
+    "replace": {
+        "paragonie/random_compat": "2.*",
+        "symfony/polyfill-ctype": "*",
+        "symfony/polyfill-iconv": "*",
+        "symfony/polyfill-intl-grapheme": "*",
+        "symfony/polyfill-intl-normalizer": "*",
+        "symfony/polyfill-mbstring": "*",
+        "symfony/polyfill-php84": "*",
+        "symfony/polyfill-php83": "*",
+        "symfony/polyfill-php82": "*",
+        "symfony/polyfill-php81": "*",
+        "symfony/polyfill-php80": "*"
+    },
+    "scripts": {
+        "cs": "vendor/bin/php-cs-fixer fix",
+        "phpstan": "vendor/bin/phpstan --memory-limit=1G",
+        "phpunit": [
+            "Composer\\Config::disableProcessTimeout",
+            "bin/phpunit -d memory_limit=256M"
+        ],
+        "analyse": [
+            "@phpstan"
+        ],
+        "test": [
+            "@analyse",
+            "@phpunit"
+        ],
+        
+        "reset-dev-db": [
+            "bin/console app:db:assert-name kit_dev,kit_test",
+            "bin/console cache:clear",
+            "bin/console doctrine:database:drop --force --if-exists",
+            "bin/console doctrine:database:create",
+            "bin/console doctrine:schema:update --force",
+            "@reset-dev-fixtures"
+        ],
+        "reset-dev-fixtures": [
+            "bin/console app:db:assert-name kit_dev,kit_test",
+            "bin/console doctrine:fixtures:load --no-interaction"
+        ],
+        "reset-test-db": "APP_ENV=test composer reset-dev-db",
+        "reset-test-fixtures": "APP_ENV=test composer reset-dev-fixtures",
+        
+        "auto-scripts": {
+            "cache:clear": "symfony-cmd",
+            "assets:install %PUBLIC_DIR%": "symfony-cmd"
+        },
+        "post-install-cmd": [
+            "@auto-scripts"
+        ],
+        "post-update-cmd": [
+            "@auto-scripts"
+        ]
+    },
+    "conflict": {
+        "symfony/symfony": "*"
+    },
+    "extra": {
+        "symfony": {
+            "allow-contrib": false,
+            "require": "7.3.*"
+        }
+    }
+}

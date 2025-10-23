@@ -1,0 +1,41 @@
+/*.cache
+
+###> JetBrains IDE settings ###
+.idea/
+/.idea
+###< JetBrains IDE settings ###
+
+###> symfony/framework-bundle ###
+/.editorconfig
+/.env.local
+/.env.dev
+/.env.local.php
+/.env.*.local
+/config/secrets/prod/prod.decrypt.private.php
+/public/bundles/
+/var/
+/vendor/
+###< symfony/framework-bundle ###
+
+###> friendsofphp/php-cs-fixer ###
+/.php-cs-fixer.php
+/.php-cs-fixer.cache
+###< friendsofphp/php-cs-fixer ###
+
+###> phpstan/phpstan ###
+phpstan.neon
+###< phpstan/phpstan ###
+
+###> phpunit/phpunit ###
+/phpunit.xml
+/.phpunit.cache/
+###< phpunit/phpunit ###
+
+###> liip/imagine-bundle ###
+/public/media/cache/
+###< liip/imagine-bundle ###
+
+###> prompts ###
+Agent_Instructions
+AGENTS.md
+###< prompts ###

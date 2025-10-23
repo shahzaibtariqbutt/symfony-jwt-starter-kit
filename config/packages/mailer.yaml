@@ -1,0 +1,10 @@
+framework:
+    mailer:
+        dsn: '%env(MAILER_DSN)%'
+        envelope:
+            sender: 'ChangeMe <changeme@example.com>'
+
+when@test:
+    framework:
+        mailer:
+            message_bus: false

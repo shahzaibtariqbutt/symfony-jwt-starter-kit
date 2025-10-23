@@ -1,0 +1,32 @@
+framework:
+    messenger:
+        transports:
+#            async:
+#                dsn: 'doctrine://default?auto_setup=0&queue_name=async'
+#                retry_strategy:
+#                    max_retries: 0
+#            media:
+#                dsn: 'doctrine://default?auto_setup=0&queue_name=media'
+#                retry_strategy:
+#                    max_retries: 0
+#            failed: 'doctrine://default?auto_setup=0&queue_name=failed'
+#            push_message_low_priority:
+#                dsn: 'doctrine://default?auto_setup=0&queue_name=push_message_low_priority'
+#                retry_strategy:
+#                    max_retries: 0
+
+        routing:
+#            'App\Domain\Notifications\PushMessageHighPriority': async
+#            'App\Domain\Notifications\PushMessageLowPriority': push_message_low_priority
+#            'App\Messenger\Message\CaptionVideo': media
+#            'App\Messenger\Message\TranscodeVideo': media
+#            'App\Messenger\Message\TranscribeVideo': media
+#            'Symfony\Component\Mailer\Messenger\SendEmailMessage': async
+
+when@test:
+    framework:
+        messenger:
+            transports:
+                async: test://
+#                push_message_low_priority: test://
+                media: test://
