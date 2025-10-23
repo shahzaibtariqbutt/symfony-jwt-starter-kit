@@ -59,7 +59,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\Column(type: 'uuid', length: 36)]
     #[ORM\GeneratedValue('CUSTOM')]
     #[ORM\CustomIdGenerator('doctrine.uuid_generator')]
-    public string $id;
+    public string $id; // @phpstan-ignore-line
 
     #[Assert\NotBlank(groups: ['Valid(User:Register)'])]
     #[Assert\Email]

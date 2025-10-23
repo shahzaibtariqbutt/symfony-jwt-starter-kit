@@ -9,27 +9,27 @@
         "ext-gd": "*",
         "ext-iconv": "*",
         "ext-intl": "*",
-        "api-platform/doctrine-orm": "^4.1",
-        "api-platform/symfony": "^4.1",
-        "doctrine/doctrine-bundle": "^2.15",
-        "doctrine/doctrine-fixtures-bundle": "^4.1",
-        "doctrine/doctrine-migrations-bundle": "^3.4",
-        "doctrine/orm": "^3.5",
-        "league/flysystem-aws-s3-v3": "^3.29",
+        "api-platform/doctrine-orm": "^4.2.2",
+        "api-platform/symfony": "^4.2.2",
+        "doctrine/doctrine-bundle": "^2.18",
+        "doctrine/doctrine-fixtures-bundle": "^4.3",
+        "doctrine/doctrine-migrations-bundle": "^3.5",
+        "doctrine/orm": "^3.5.2",
+        "league/flysystem-aws-s3-v3": "^3.30.1",
         "league/flysystem-bundle": "^3.5",
-        "liip/imagine-bundle": "^2.13",
+        "liip/imagine-bundle": "^2.15",
         "m10c/native-push-notifier-bundle": "^0.1.2",
-        "nelmio/cors-bundle": "^2.5",
-        "nesbot/carbon": "^3.10",
-        "phpdocumentor/reflection-docblock": "^5.6",
+        "nelmio/cors-bundle": "^2.6",
+        "nesbot/carbon": "^3.10.3",
+        "phpdocumentor/reflection-docblock": "^5.6.3",
         "scienta/doctrine-json-functions": "^6.3",
-        "sentry/sentry-symfony": "^5.3",
+        "sentry/sentry-symfony": "^5.6",
         "symfony/asset": "7.3.*",
         "symfony/console": "7.3.*",
         "symfony/doctrine-messenger": "7.3.*",
         "symfony/dotenv": "7.3.*",
         "symfony/expression-language": "7.3.*",
-        "symfony/flex": "^2.8",
+        "symfony/flex": "^2.8.2",
         "symfony/framework-bundle": "7.3.*",
         "symfony/http-client": "7.3.*",
         "symfony/intl": "7.3.*",
@@ -50,25 +50,25 @@
         "twig/cssinliner-extra": "^3.21",
         "twig/extra-bundle": "^3.21",
         "twig/inky-extra": "^3.21",
-        "vich/uploader-bundle": "^2.7",
-        "webmozart/assert": "^1.11",
-        "lexik/jwt-authentication-bundle": "^3.1"
+        "vich/uploader-bundle": "^2.8.1",
+        "webmozart/assert": "^1.12",
+        "lexik/jwt-authentication-bundle": "^3.1.1"
     },
     "require-dev": {
-        "friendsofphp/php-cs-fixer": "^3.85",
-        "phpstan/extension-installer": "^1.4",
-        "phpstan/phpstan": "^2.1",
-        "phpstan/phpstan-doctrine": "^2.0",
-        "phpstan/phpstan-symfony": "^2.0",
+        "friendsofphp/php-cs-fixer": "^3.89",
+        "phpstan/extension-installer": ">=1.4.3",
+        "phpstan/phpstan": ">=2.1.22",
+        "phpstan/phpstan-doctrine": ">=2.0.4",
+        "phpstan/phpstan-symfony": ">=2.0.7",
         "phpstan/phpstan-webmozart-assert": "^2.0",
-        "phpunit/phpunit": "^12.2",
+        "phpunit/phpunit": "^12.4.1",
         "symfony/browser-kit": "7.3.*",
         "symfony/css-selector": "7.3.*",
         "symfony/debug-bundle": "7.3.*",
         "symfony/phpunit-bridge": "7.3.*",
         "symfony/stopwatch": "7.3.*",
         "symfony/web-profiler-bundle": "7.3.*",
-        "zenstruck/messenger-test": "^1.11"
+        "zenstruck/messenger-test": "^1.11.1"
     },
     "config": {
         "allow-plugins": {
@@ -121,7 +121,7 @@
             "@analyse",
             "@phpunit"
         ],
-        
+
         "reset-dev-db": [
             "bin/console app:db:assert-name kit_dev,kit_test",
             "bin/console cache:clear",
@@ -136,7 +136,7 @@
         ],
         "reset-test-db": "APP_ENV=test composer reset-dev-db",
         "reset-test-fixtures": "APP_ENV=test composer reset-dev-fixtures",
-        
+
         "auto-scripts": {
             "cache:clear": "symfony-cmd",
             "assets:install %PUBLIC_DIR%": "symfony-cmd"
