@@ -15,7 +15,7 @@ jobs:
       - checkout
       -   run: sudo apt update
       -   run: sudo apt-get install -y libpq-dev libxslt1-dev
-      -   run: sudo docker-php-ext-install pdo_pgsql xsl
+      -   run: sudo docker-php-ext-install xsl
 
       - restore_cache:
             keys:
