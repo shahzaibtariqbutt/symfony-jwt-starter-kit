@@ -13,13 +13,13 @@ jobs:
         APP_ENV: test
     steps:
       - checkout
-      - run: sudo apt update
-      - run: sudo apt-get install -y libpq-dev
+      -   run: sudo apt update
+      -   run: sudo apt-get install -y libpq-dev libxslt1-dev
+      -   run: sudo docker-php-ext-install pdo_pgsql xsl
 
       - restore_cache:
             keys:
                 - v1-dependencies-{{ checksum "composer.lock" }}
-                # fallback to using the latest cache if no exact match is found
                 - v1-dependencies-
 
       - run: composer install -n --prefer-dist
@@ -54,9 +54,7 @@ jobs:
       - run: bin/console doctrine:schema:validate --skip-sync
       # Confirm migrating all the way down and up works
       - run: php bin/console doctrine:database:create --if-not-exists
-      - run: bin/console doctrine:migrations:migrate --no-interaction
-      - run: bin/console doctrine:migrations:migrate first --no-interaction
-      - run: bin/console doctrine:migrations:migrate --no-interaction
+      - run: bin/console doctrine:schema:update --force
 
   phpunit:
     docker:
@@ -72,7 +70,7 @@ jobs:
       - attach_workspace:
           at: .
       - run: php bin/console doctrine:database:create --if-not-exists
-      - run: bin/console doctrine:migrations:migrate --no-interaction
+      - run: bin/console doctrine:schema:update --force
       - run: php bin/console doctrine:fixtures:load --no-interaction
       - run: composer run phpunit
 
