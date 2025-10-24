@@ -14,6 +14,7 @@ use App\Enum\UserStatus;
 use App\Repository\UserRepository;
 use App\Validator;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Bridge\Doctrine\IdGenerator\UuidGenerator;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Clock\DatePoint;
 use Symfony\Component\Mime\Address;
@@ -59,7 +60,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\Column(type: 'uuid', length: 36)]
     #[ORM\GeneratedValue('CUSTOM')]
     #[ORM\CustomIdGenerator('doctrine.uuid_generator')]
-    public string $id; // @phpstan-ignore-line
+    public string $id; // @phpstan-ignore-line fix todo
 
     #[Assert\NotBlank(groups: ['Valid(User:Register)'])]
     #[Assert\Email]
@@ -96,7 +97,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\Column(type: 'boolean')]
     public bool $isAdmin = false;
 
-    #[ORM\Column(type: 'datetime_immutable', nullable: true)]
+    #[ORM\Column(type: 'datetime_immutable')]
     #[Serializer\Groups([
         'User:W$Register',
     ])]

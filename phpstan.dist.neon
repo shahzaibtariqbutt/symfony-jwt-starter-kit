@@ -1,8 +1,14 @@
 parameters:
-    level: 6
+    level: max
+    treatPhpDocTypesAsCertain: false
     paths:
         - bin/
         - config/
         - public/
         - src/
         - tests/
+    doctrine:
+        objectManagerLoader: tests/phpstan-object-manager.php
+    symfony:
+        consoleApplicationLoader: tests/phpstan-console-application.php
+        containerXmlPath: var/cache/dev/App_KernelDevDebugContainer.xml

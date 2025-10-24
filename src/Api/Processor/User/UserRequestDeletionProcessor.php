@@ -30,7 +30,7 @@ readonly class UserRequestDeletionProcessor implements ProcessorInterface
      */
     public function process(mixed $data, Operation $operation, array $uriVariables = [], array $context = []): User
     {
-        Assert::isInstanceOf($user = $data, User::class);
+        $user = $data;
         Assert::same($user->status, UserStatus::Active);
 
         $user->status = UserStatus::DeletionRequested;

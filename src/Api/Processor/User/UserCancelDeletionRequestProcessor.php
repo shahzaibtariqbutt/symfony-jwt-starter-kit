@@ -26,14 +26,14 @@ readonly class UserCancelDeletionRequestProcessor implements ProcessorInterface
      */
     public function process(mixed $data, Operation $operation, array $uriVariables = [], array $context = []): User
     {
-        Assert::isInstanceOf($data, User::class);
+        $user = $data;
         Assert::same($data->status, UserStatus::DeletionRequested);
 
-        $data->status = UserStatus::Active;
-        $data->deletionRequestedAt = null;
+        $user->status = UserStatus::Active;
+        $user->deletionRequestedAt = null;
 
         $this->em->flush();
 
-        return $data;
+        return $user;
     }
 }

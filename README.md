@@ -69,4 +69,4 @@ This should be managed via Supervisor or similar process manager.
 Add your scheduled tasks here as your project grows.
 
 Example:
-- `bin/console app:your:command` - every hour
+- `bin/console app:users:deletion:perform` - every day at 6pm

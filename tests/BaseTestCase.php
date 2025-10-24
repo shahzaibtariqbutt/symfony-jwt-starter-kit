@@ -52,16 +52,10 @@ abstract class BaseTestCase extends ApiTestCase
      * @template T of object
      *
      * @param class-string<T> $classString
-     *
-     * @return T
      */
     protected function getService(string $classString): object
     {
-        $service = static::getContainer()->get($classString);
-        Assert::isInstanceOf($service, $classString);
-
-        // @phpstan-ignore-next-line
-        return $service;
+        return static::getContainer()->get($classString);
     }
 
     protected function registerUser(
